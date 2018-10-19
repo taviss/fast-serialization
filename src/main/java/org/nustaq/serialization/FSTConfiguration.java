@@ -795,7 +795,7 @@ public class FSTConfiguration {
         for (int i = 0; i < c.length; i++) {
             classRegistry.registerClass(c[i],this);
             try {
-                Class ac = Class.forName("[L"+c[i].getName()+";");
+                Class ac = Class.forName("[L"+c[i].getName()+";", true, getClassLoader());
                 classRegistry.registerClass(ac,this);
             } catch (ClassNotFoundException e) {
                 // silent
@@ -1115,7 +1115,7 @@ public class FSTConfiguration {
             minbinNamesReverse.put(clz.getName(), clz.getSimpleName());
             try {
                 if (!clz.isArray() ) {
-                    Class ac = Class.forName("[L"+clz.getName()+";");
+                    Class ac = Class.forName("[L"+clz.getName()+";", true, getClassLoader());
                     minbinNames.put(clz.getSimpleName()+"[]", ac.getName());
                     minbinNamesReverse.put(ac.getName(), clz.getSimpleName()+"[]");
                 }
